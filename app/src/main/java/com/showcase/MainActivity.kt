@@ -10,14 +10,30 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.showcase.databinding.ActivityMainBinding
+import com.showcase.github.GitHubService
+import dagger.android.AndroidInjection
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    @Inject
+    lateinit var gitHubService: GitHubService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AndroidInjection.inject(this)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            gitHubService.listOrganizations()
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
