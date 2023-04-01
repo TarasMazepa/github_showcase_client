@@ -17,6 +17,11 @@ selectAll:
 SELECT *
 FROM organization;
 
+selectById:
+SELECT *
+FROM organization
+WHERE id = ?;
+
 insert:
 INSERT INTO organization (
               id,
