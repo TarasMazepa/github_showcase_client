@@ -1,0 +1,35 @@
+CREATE TABLE organization (
+  id INTEGER PRIMARY KEY NOT NULL,
+  login TEXT NOT NULL,
+  node_id TEXT NOT NULL,
+  url TEXT NOT NULL,
+  repos_url TEXT NOT NULL,
+  events_url TEXT NOT NULL,
+  hooks_url TEXT NOT NULL,
+  issues_url TEXT NOT NULL,
+  members_url TEXT NOT NULL,
+  public_members_url TEXT NOT NULL,
+  avatar_url TEXT NOT NULL,
+  description TEXT
+);
+
+selectAll:
+SELECT *
+FROM organization;
+
+insert:
+INSERT INTO organization (
+              id,
+              login,
+              node_id,
+              url,
+              repos_url,
+              events_url,
+              hooks_url,
+              issues_url,
+              members_url,
+              public_members_url,
+              avatar_url,
+              description
+            )
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?);

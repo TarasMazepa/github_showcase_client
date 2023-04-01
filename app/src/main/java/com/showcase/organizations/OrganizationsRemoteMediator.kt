@@ -4,11 +4,15 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import com.showcase.Database
 import com.showcase.github.GitHubService
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class OrganizationsRemoteMediator @Inject constructor(private val gitHubService: GitHubService) :
+class OrganizationsRemoteMediator @Inject constructor(
+    private val gitHubService: GitHubService,
+    private val database: Database
+) :
     RemoteMediator<Int, OrganizationsApiModel>() {
     override suspend fun load(
         loadType: LoadType,
@@ -31,9 +35,30 @@ class OrganizationsRemoteMediator @Inject constructor(private val gitHubService:
                 )
             )
         }
+        val body = response.body()
+        body?.let {
+            database.transaction {
+                it.forEach {
+                    database.organizationQueries.insert(
+                        it.id,
+                        it.login,
+                        it.node_id,
+                        it.url,
+                        it.repos_url,
+                        it.events_url,
+                        it.hooks_url,
+                        it.issues_url,
+                        it.members_url,
+                        it.public_members_url,
+                        it.avatar_url,
+                        it.description
+                    )
+                }
+            }
+        }
         return MediatorResult.Success(
             endOfPaginationReached =
-            response.body()?.isNotEmpty() ?: true
+            body?.isNotEmpty() ?: true
         )
     }
 }

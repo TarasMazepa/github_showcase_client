@@ -2,7 +2,7 @@ package com.showcase.organizations
 
 data class OrganizationsApiModel(
     val login: String,
-    val id: Int,
+    val id: Long,
     val node_id: String,
     val url: String,
     val repos_url: String,

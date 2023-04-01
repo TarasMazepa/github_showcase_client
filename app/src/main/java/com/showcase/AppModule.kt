@@ -1,6 +1,8 @@
 package com.showcase
 
+import android.content.Context
 import com.showcase.github.GitHubServiceModule
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -8,4 +10,7 @@ import dagger.android.ContributesAndroidInjector
 interface AppModule {
     @ContributesAndroidInjector
     fun contributeMainActivity(): MainActivity
+
+    @Binds
+    fun application(app: App): Context
 }

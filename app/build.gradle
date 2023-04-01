@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'app.cash.sqldelight' version '2.0.0-alpha05'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.showcase"
+        applicationId 'com.showcase'
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -36,6 +37,14 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        Database {
+            packageName = 'com.showcase'
+        }
+    }
+}
+
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -54,7 +63,9 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.45'
     implementation 'com.google.dagger:dagger-android:2.45'
     implementation 'com.google.dagger:dagger-android-support:2.35.1'
-    implementation "androidx.paging:paging-runtime:3.1.1"
+    implementation 'androidx.paging:paging-runtime:3.1.1'
+    implementation 'app.cash.sqldelight:android-driver:2.0.0-alpha05'
+    implementation 'app.cash.sqldelight:androidx-paging3-extensions:2.0.0-alpha05'
     kapt 'com.google.dagger:dagger-android-processor:2.35.1'
     kapt 'com.google.dagger:dagger-compiler:2.45'
     testImplementation 'junit:junit:4.13.2'

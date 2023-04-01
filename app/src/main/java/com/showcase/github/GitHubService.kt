@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface GitHubService {
     @GET("organizations")
     suspend fun listOrganizations(
-        @Query("since") since: Int? = null,
+        @Query("since") since: Long? = null,
         @Query("per_page") per_page: Int? = null
     ): Response<List<OrganizationsApiModel>>
 }
