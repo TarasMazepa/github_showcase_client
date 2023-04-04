@@ -22,6 +22,14 @@ SELECT *
 FROM organization
 WHERE id = ?;
 
+countOrganizations:
+SELECT count(*) FROM organization;
+
+pagingOrganizations:
+SELECT *
+FROM organization
+LIMIT :limit OFFSET :offset;
+
 insert:
 INSERT INTO organization (
               id,

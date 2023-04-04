@@ -1,22 +1,22 @@
 package com.showcase.organizations
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.showcase.R
+import androidx.fragment.app.viewModels
 import com.showcase.databinding.OrganizationsListFragmentBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class OrganizationsListFragment : Fragment() {
+class OrganizationsListFragment : DaggerFragment() {
 
     private var _binding: OrganizationsListFragmentBinding? = null
-
     private val binding get() = _binding!!
+    private val viewModel by viewModels<OrganizationsViewModel>()
+
+    @Inject
+    lateinit var organizationPagingSource: OrganizationPagingSource
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

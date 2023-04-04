@@ -1,16 +1,14 @@
 package com.showcase
 
 import android.content.Context
-import com.showcase.github.GitHubServiceModule
-import dagger.Binds
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import dagger.Provides
 
-@Module(includes = [GitHubServiceModule::class])
-interface AppModule {
-    @ContributesAndroidInjector
-    fun contributeMainActivity(): MainActivity
-
-    @Binds
-    fun application(app: App): Context
+@Module
+class AppModule(val app: App) {
+    @Provides
+    @AppContext
+    fun providesContext(): Context {
+        return app;
+    }
 }

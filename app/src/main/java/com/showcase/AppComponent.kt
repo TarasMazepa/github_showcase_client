@@ -1,9 +1,12 @@
 package com.showcase
 
+import com.showcase.organizations.OrganizationsModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import javax.inject.Singleton
 
-@Component(modules = [AndroidInjectionModule::class, AppModule::class])
-interface AppComponent {
-    fun inject(app: App)
+@Singleton
+@Component(modules = [AndroidInjectionModule::class, AppModule::class, OrganizationsModule::class])
+abstract class AppComponent : AndroidInjector<App> {
 }
