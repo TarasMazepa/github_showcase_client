@@ -27,9 +27,13 @@ class OrganizationsAdapter @Inject constructor(
             Picasso.get().load(item?.avatar_url)
                 .error(android.R.drawable.stat_notify_error).into(avatar)
             textHeadline.text = item?.login ?: ""
+            val description = item?.description ?: ""
+            browserLink.visibility = if (description.isBlank()) View.GONE else View.VISIBLE
             textSubtitle.text = item?.description ?: ""
             root.tag = item?.id
-            browserLink.tag = "https://github.com/${item?.login}"
+            val url = "https://github.com/${item?.login}"
+            browserLink.text = url
+            browserLink.tag = url
             browserLink.visibility = if (item == null) View.GONE else View.VISIBLE
         }
     }

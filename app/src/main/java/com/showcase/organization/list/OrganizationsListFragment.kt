@@ -62,9 +62,9 @@ class OrganizationsListFragment : DaggerFragment(), OrganizationsListItemActions
 
     override fun onItemClicked(id: Long) {
         val navController = findNavController()
-        navController.navigate(R.id.SecondFragment, Bundle().apply {
-            putLong("id", id)
-        })
+//        navController.navigate(R.id.SecondFragment, Bundle().apply {
+//            putLong("id", id)
+//        })
     }
 
     override fun onLinkClicked(url: String) {
