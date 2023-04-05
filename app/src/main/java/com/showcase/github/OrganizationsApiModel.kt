@@ -1,4 +1,4 @@
-package com.showcase.organizations
+package com.showcase.github
 
 data class OrganizationsApiModel(
     val login: String,

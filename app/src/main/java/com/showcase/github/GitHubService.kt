@@ -1,6 +1,5 @@
 package com.showcase.github
 
-import com.showcase.organizations.OrganizationsApiModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,4 +1,4 @@
-package com.showcase.organizations
+package com.showcase.organization.details
 
 import android.os.Bundle
 import android.view.LayoutInflater

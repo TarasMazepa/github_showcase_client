@@ -1,4 +1,4 @@
-package com.showcase.organizations
+package com.showcase.organization.list
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
@@ -6,6 +6,7 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import com.showcase.Database
 import com.showcase.github.GitHubService
+import com.showcase.organization.Organization
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -13,10 +14,10 @@ class OrganizationsRemoteMediator @Inject constructor(
     private val gitHubService: GitHubService,
     private val database: Database
 ) :
-    RemoteMediator<Int, OrganizationsApiModel>() {
+    RemoteMediator<Int, Organization>() {
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, OrganizationsApiModel>
+        state: PagingState<Int, Organization>
     ): MediatorResult {
         val loadKey = when (loadType) {
             LoadType.REFRESH -> null
