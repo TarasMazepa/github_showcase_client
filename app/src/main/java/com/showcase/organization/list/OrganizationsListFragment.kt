@@ -1,25 +1,26 @@
 package com.showcase.organization.list
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.cachedIn
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.showcase.R
 import com.showcase.databinding.OrganizationsListFragmentBinding
 import com.showcase.github.GitHubService
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-class OrganizationsListFragment : DaggerFragment() {
+class OrganizationsListFragment : DaggerFragment(), OrganizationsListItemActions {
 
     private var _binding: OrganizationsListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -35,8 +36,7 @@ class OrganizationsListFragment : DaggerFragment() {
     lateinit var gitHubService: GitHubService
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = OrganizationsListFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -46,6 +46,7 @@ class OrganizationsListFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         val flow = organizationPager.flow.cachedIn(viewModel.viewModelScope)
         binding.list.layoutManager = LinearLayoutManager(context)
+        organizationsAdapter.organizationsListItemActions = this
         binding.list.adapter = organizationsAdapter
         lifecycleScope.launch {
             flow.collectLatest { pagingData ->
@@ -57,5 +58,16 @@ class OrganizationsListFragment : DaggerFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClicked(id: Long) {
+        val navController = findNavController()
+        navController.navigate(R.id.SecondFragment, Bundle().apply {
+            putLong("id", id)
+        })
+    }
+
+    override fun onLinkClicked(url: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
 }

@@ -4,4 +4,3 @@ import app.cash.paging.Pager
 import com.showcase.organization.Organization
 
 typealias OrganizationPager = Pager<Int, Organization>
-

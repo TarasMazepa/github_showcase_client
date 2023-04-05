@@ -70,6 +70,7 @@ dependencies {
     implementation 'app.cash.sqldelight:androidx-paging3-extensions:2.0.0-alpha05'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
     kapt 'com.google.dagger:dagger-android-processor:2.45'
     kapt 'com.google.dagger:dagger-compiler:2.45'
     testImplementation 'junit:junit:4.13.2'

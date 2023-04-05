@@ -12,7 +12,7 @@ import dagger.android.ContributesAndroidInjector
 import kotlinx.coroutines.Dispatchers
 
 @Module(includes = [DatabaseModule::class])
-abstract class OrganizationsModule {
+abstract class OrganizationsListModule {
     companion object {
         @OptIn(ExperimentalPagingApi::class)
         @Provides
