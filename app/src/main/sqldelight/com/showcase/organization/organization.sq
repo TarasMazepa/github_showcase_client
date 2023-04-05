@@ -30,6 +30,13 @@ SELECT *
 FROM organization
 LIMIT :limit OFFSET :offset;
 
+nextIdToPageFrom:
+SELECT MAX(id)
+FROM organization;
+
+deleteAll:
+DELETE FROM organization;
+
 insert:
 INSERT INTO organization (
               id,

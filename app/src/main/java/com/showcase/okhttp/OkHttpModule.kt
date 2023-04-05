@@ -17,8 +17,13 @@ object OkHttpModule {
 
     @Provides
     fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
+        return OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor {
+                it.proceed(
+                    it.request().newBuilder().addHeader(
+                        "Authorization",
+                        " Bearer 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"
+                    ).build()
+                )
+            }.build()
     }
 }

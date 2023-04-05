@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.showcase.organization.list.OrganizationsListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/organizations_on_github"
         tools:layout="@layout/organizations_list_fragment">
 
         <action

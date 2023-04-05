@@ -20,7 +20,7 @@ abstract class OrganizationsModule {
             database: Database,
             organizationsRemoteMediator: OrganizationsRemoteMediator
         ): OrganizationPager {
-            return Pager(PagingConfig(10), remoteMediator = organizationsRemoteMediator) {
+            return Pager(PagingConfig(20), remoteMediator = organizationsRemoteMediator) {
                 QueryPagingSource(
                     database.organizationQueries.countOrganizations(),
                     database.organizationQueries,
